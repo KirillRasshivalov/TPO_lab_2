@@ -8,7 +8,7 @@ public class Sin implements BaseFunction {
     private Validator validator = new Validator();
     @Override
     public double calculate(double x, double precision) {
-        validator.validate_data(x, precision);
+        validator.validate_trig(x, precision);
         double sumNew, sumOld, sum;
         int i = 1;
         sum = sumNew = x;

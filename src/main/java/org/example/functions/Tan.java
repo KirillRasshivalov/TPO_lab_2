@@ -19,7 +19,7 @@ public class Tan implements BaseFunction {
 
     @Override
     public double calculate(double x, double precision) {
-        validator.validate_data(x, precision);
+        validator.validate_trig(x, precision);
         return sin.calculate(x, precision) / cos.calculate(x, precision);
     }
 

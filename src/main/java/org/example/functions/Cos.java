@@ -18,7 +18,7 @@ public class Cos implements BaseFunction {
 
     @Override
     public double calculate(double x, double precision) {
-        validator.validate_data(x, precision);
+        validator.validate_trig(x, precision);
         return sin.calculate(PI / 2 - x, precision);
     }
 

@@ -15,7 +15,7 @@ public class Sec implements BaseFunction {
 
     @Override
     public double calculate(double x, double precision) {
-        validator.validate_data(x, precision);
+        validator.validate_trig(x, precision);
         return 1 / cos.calculate(x, precision);
     }
 
