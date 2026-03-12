@@ -1,14 +1,14 @@
 package org.example.base_functions;
 
-import org.example.interfaces.BaseFunction;
+import org.example.interfaces.BaseTrigFunction;
 import org.example.validation.Validator;
 
-public class Sin implements BaseFunction {
+public class Sin implements BaseTrigFunction {
 
     private Validator validator = new Validator();
     @Override
     public double calculate(double x, double precision) {
-        validator.validate_trig(x, precision);
+        validator.validateTrig(x, precision);
         double sumNew, sumOld, sum;
         int i = 1;
         sum = sumNew = x;

@@ -1,10 +1,10 @@
 package org.example.functions;
 
 import org.example.base_functions.Sin;
-import org.example.interfaces.BaseFunction;
+import org.example.interfaces.BaseTrigFunction;
 import org.example.validation.Validator;
 
-public class Cos implements BaseFunction {
+public class Cos implements BaseTrigFunction {
 
     private final static double PI = Math.PI;
 
@@ -18,7 +18,7 @@ public class Cos implements BaseFunction {
 
     @Override
     public double calculate(double x, double precision) {
-        validator.validate_trig(x, precision);
+        validator.validateTrig(x, precision);
         return sin.calculate(PI / 2 - x, precision);
     }
 

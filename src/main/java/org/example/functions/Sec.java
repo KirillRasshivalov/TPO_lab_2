@@ -1,9 +1,9 @@
 package org.example.functions;
 
-import org.example.interfaces.BaseFunction;
+import org.example.interfaces.BaseTrigFunction;
 import org.example.validation.Validator;
 
-public class Sec implements BaseFunction {
+public class Sec implements BaseTrigFunction {
 
     private final Validator validator = new Validator();
 
@@ -15,7 +15,7 @@ public class Sec implements BaseFunction {
 
     @Override
     public double calculate(double x, double precision) {
-        validator.validate_trig(x, precision);
+        validator.validateTrig(x, precision);
         return 1 / cos.calculate(x, precision);
     }
 

@@ -1,6 +1,6 @@
 package org.example.interfaces;
 
-public interface BaseFunction {
+public interface BaseTrigFunction {
     double calculate(double x, double precision);
     double etalon(double x);
 }

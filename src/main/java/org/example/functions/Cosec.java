@@ -1,10 +1,10 @@
 package org.example.functions;
 
 import org.example.base_functions.Sin;
-import org.example.interfaces.BaseFunction;
+import org.example.interfaces.BaseTrigFunction;
 import org.example.validation.Validator;
 
-public class Cosec implements BaseFunction {
+public class Cosec implements BaseTrigFunction {
 
     private final Validator validator = new Validator();
     private Sin sin;
@@ -15,7 +15,7 @@ public class Cosec implements BaseFunction {
 
     @Override
     public double calculate(double x, double precision) {
-        validator.validate_trig(x,precision);
+        validator.validateTrig(x,precision);
         return 1 / sin.calculate(x, precision);
     }
 
