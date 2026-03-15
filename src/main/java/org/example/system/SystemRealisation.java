@@ -9,7 +9,6 @@ import org.example.functions.log.Sec;
 import org.example.functions.log.Tan;
 import org.example.interfaces.BaseSystem;
 
-@AllArgsConstructor
 public class SystemRealisation implements BaseSystem {
 
     private Sin sin;
@@ -20,6 +19,15 @@ public class SystemRealisation implements BaseSystem {
     private Ln ln;
 
     private Log log;
+
+    public SystemRealisation(Sin sin, Cosec cosec, Sec sec, Tan tan, Ln ln, Log log) {
+        this.sin = sin;
+        this.cosec = cosec;
+        this.sec = sec;
+        this.tan = tan;
+        this.ln = ln;
+        this.log = log;
+    }
 
     @Override
     public double calculateAnswer(double x, double precision) {
