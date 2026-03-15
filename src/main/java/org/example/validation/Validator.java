@@ -20,4 +20,20 @@ public class Validator {
         }
         return true;
     }
+
+    public boolean validateCosec(double x, double precision) {
+        validateTrig(x, precision);
+        if (Math.abs(Math.sin(x)) < precision) {
+            throw new ArithmeticException("Значение синуса не должно быть равно нулю.");
+        }
+        return true;
+    }
+
+    public boolean validateSec(double x, double precision) {
+        validateTrig(x, precision);
+        if (Math.abs(Math.cos(x)) < precision) {
+            throw new ArithmeticException("Значение косинуса не должно быть равно нулю.");
+        }
+        return true;
+    }
 }

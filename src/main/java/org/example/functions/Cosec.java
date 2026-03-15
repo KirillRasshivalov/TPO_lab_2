@@ -15,13 +15,13 @@ public class Cosec implements BaseTrigFunction {
 
     @Override
     public double calculate(double x, double precision) {
-        validator.validateTrig(x,precision);
+        validator.validateCosec(x, precision);
         return 1 / sin.calculate(x, precision);
     }
 
     @Override
     public double etalon(double x) {
-        return Math.cosh(x);
+        return 1 / Math.sin(x);
     }
 
 }

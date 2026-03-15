@@ -15,7 +15,7 @@ public class Sec implements BaseTrigFunction {
 
     @Override
     public double calculate(double x, double precision) {
-        validator.validateTrig(x, precision);
+        validator.validateSec(x, precision);
         return 1 / cos.calculate(x, precision);
     }
 
