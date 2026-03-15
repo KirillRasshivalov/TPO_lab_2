@@ -36,4 +36,9 @@ public class Validator {
         }
         return true;
     }
+
+    public boolean validateTan(double x, double precision) {
+        validateSec(x, precision);
+        return true;
+    }
 }

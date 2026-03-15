@@ -1,6 +1,7 @@
-package org.example.functions;
+package org.example.functions.log;
 
 import org.example.base_functions.Sin;
+import org.example.functions.log.Cosec;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

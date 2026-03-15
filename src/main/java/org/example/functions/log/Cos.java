@@ -1,4 +1,4 @@
-package org.example.functions;
+package org.example.functions.log;
 
 import org.example.base_functions.Sin;
 import org.example.interfaces.BaseTrigFunction;

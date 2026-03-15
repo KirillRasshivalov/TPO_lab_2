@@ -1,30 +1,27 @@
-package org.example.functions;
+package org.example.functions.log;
 
 import org.example.base_functions.Sin;
 import org.example.interfaces.BaseTrigFunction;
 import org.example.validation.Validator;
 
-public class Tan implements BaseTrigFunction {
+public class Cosec implements BaseTrigFunction {
 
     private final Validator validator = new Validator();
-
     private Sin sin;
 
-    private Cos cos;
-
-    public Tan(Sin sin, Cos cos) {
+    public Cosec(Sin sin) {
         this.sin = sin;
-        this.cos = cos;
     }
 
     @Override
     public double calculate(double x, double precision) {
-        validator.validateTrig(x, precision);
-        return sin.calculate(x, precision) / cos.calculate(x, precision);
+        validator.validateCosec(x, precision);
+        return 1 / sin.calculate(x, precision);
     }
 
     @Override
     public double etalon(double x) {
-        return Math.tan(x);
+        return 1 / Math.sin(x);
     }
+
 }

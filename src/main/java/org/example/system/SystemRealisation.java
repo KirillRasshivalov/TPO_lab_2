@@ -3,10 +3,10 @@ package org.example.system;
 import lombok.AllArgsConstructor;
 import org.example.base_functions.Ln;
 import org.example.base_functions.Sin;
-import org.example.functions.Cosec;
-import org.example.functions.Log;
-import org.example.functions.Sec;
-import org.example.functions.Tan;
+import org.example.functions.log.Cosec;
+import org.example.functions.trig.Log;
+import org.example.functions.log.Sec;
+import org.example.functions.log.Tan;
 import org.example.interfaces.BaseSystem;
 
 @AllArgsConstructor

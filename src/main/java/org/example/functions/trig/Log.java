@@ -1,4 +1,4 @@
-package org.example.functions;
+package org.example.functions.trig;
 
 import org.example.base_functions.Ln;
 import org.example.interfaces.BaseLogFunction;
