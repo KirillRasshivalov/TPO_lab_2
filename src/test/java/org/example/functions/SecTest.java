@@ -52,7 +52,7 @@ public class SecTest {
     }
 
     @Test
-    @DisplayName("Сравнение с оргинальным косекансом.")
+    @DisplayName("Сравнение с оргинальным секансом.")
     void testOriginal() {
         double x1 = PI / 4;
         double x2 = 12;
