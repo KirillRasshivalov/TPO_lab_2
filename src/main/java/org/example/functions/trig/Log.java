@@ -10,7 +10,7 @@ public class Log implements BaseLogFunction {
 
     private Ln ln;
 
-    public Log() {
+    public Log(Ln ln) {
         this.ln = new Ln();
     }
 
