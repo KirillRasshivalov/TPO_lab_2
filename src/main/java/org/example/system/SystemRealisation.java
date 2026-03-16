@@ -31,7 +31,7 @@ public class SystemRealisation implements BaseSystem {
 
     @Override
     public double calculateAnswer(double x, double precision) {
-        if (x < 0) {
+        if (x <= 0) {
             double sinX = sin.calculate(x, precision);
             double cosecX = cosec.calculate(x, precision);
             double secX = sec.calculate(x, precision);
