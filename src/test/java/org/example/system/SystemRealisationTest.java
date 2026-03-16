@@ -9,10 +9,8 @@ import org.example.functions.log.Sec;
 import org.example.functions.log.Tan;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -41,7 +39,7 @@ public class SystemRealisationTest {
     }
 
     @ParameterizedTest
-    @DisplayName("Тестирование тригонометрической ветки (x < 0)")
+    @DisplayName("Тестирование тригонометрической ветки (x <= 0)")
     @CsvSource({
             "-0.5",
             "-1.0",
@@ -65,4 +63,30 @@ public class SystemRealisationTest {
         double expected = ((((((secX + tanX) * sinX) - secX) * tanX) * secX) * (cosecX - sinX)) + sinX;
         assertEquals(expected, result, DELTA);
     }
+
+    @ParameterizedTest
+    @DisplayName("Тестирование логарифмической ветки (x > 0)")
+    @CsvSource({
+            "0.5",
+            "1.0",
+            "1.5",
+            "2.0",
+            "2.5",
+            "3.0",
+            "3.5",
+            "4.0",
+            "5.0",
+            "10.0"
+    })
+    void testLogarithmBranch(double x) {
+        double result = system.calculateAnswer(x, HIGH_PRECISION);
+        double logN = ln.calculate(x, HIGH_PRECISION);
+        double log2 = log.calculate(x, HIGH_PRECISION, 2);
+        double log3 = log.calculate(x, HIGH_PRECISION, 3);
+        double log5 = log.calculate(x, HIGH_PRECISION, 5);
+        double expected = ((((logN * logN) + log3) * log5) - (log5 - log5)) /
+                ((log5 + (log2 - (log5 * log5))) + log5);
+        assertEquals(expected, result, DELTA);
+    }
+
 }
