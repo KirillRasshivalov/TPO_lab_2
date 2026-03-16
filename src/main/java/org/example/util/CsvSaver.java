@@ -8,6 +8,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import java.util.Locale;
+
 public class CsvSaver {
 
     public static void saveTrigFunction(BaseTrigFunction function, String functionName,
@@ -18,9 +20,9 @@ public class CsvSaver {
             for (double x = xStart; x <= xEnd; x += step) {
                 try {
                     double result = function.calculate(x, precision);
-                    writer.printf("%.6f,%.10f%n", x, result);
+                    writer.printf(Locale.US, "%.6f,%.10f%n", x, result);
                 } catch (Exception e) {
-                    writer.printf("%.6f,ОШИБКА%n", x);
+                    writer.printf(Locale.US, "%.6f,ОШИБКА%n", x);
                 }
             }
         }
@@ -35,9 +37,9 @@ public class CsvSaver {
             for (double x = xStart; x <= xEnd; x += step) {
                 try {
                     double result = function.calculate(x, precision, base);
-                    writer.printf("%.6f,%.10f%n", x, result);
+                    writer.printf(Locale.US, "%.6f,%.10f%n", x, result);
                 } catch (Exception e) {
-                    writer.printf("%.6f,ОШИБКА%n", x);
+                    writer.printf(Locale.US, "%.6f,ОШИБКА%n", x);
                 }
             }
         }
@@ -51,9 +53,9 @@ public class CsvSaver {
             for (double x = xStart; x <= xEnd; x += step) {
                 try {
                     double result = system.calculateAnswer(x, precision);
-                    writer.printf("%.6f,%.10f%n", x, result);
+                    writer.printf(Locale.US, "%.6f,%.10f%n", x, result);
                 } catch (Exception e) {
-                    writer.printf("%.6f,ОШИБКА%n", x);
+                    writer.printf(Locale.US, "%.6f,ОШИБКА%n", x);
                 }
             }
         }
