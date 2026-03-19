@@ -2,11 +2,11 @@ package org.example.system;
 
 import org.example.base_functions.Ln;
 import org.example.base_functions.Sin;
-import org.example.functions.log.Cos;
-import org.example.functions.log.Cosec;
-import org.example.functions.trig.Log;
-import org.example.functions.log.Sec;
-import org.example.functions.log.Tan;
+import org.example.functions.trig.Cos;
+import org.example.functions.trig.Cosec;
+import org.example.functions.log.Log;
+import org.example.functions.trig.Sec;
+import org.example.functions.trig.Tan;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

@@ -1,11 +1,11 @@
-package org.example.functions.log;
+package org.example.functions.trig;
 
 import org.example.base_functions.Sin;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static junit.framework.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TanTest  {

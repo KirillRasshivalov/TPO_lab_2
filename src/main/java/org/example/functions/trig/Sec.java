@@ -1,6 +1,5 @@
-package org.example.functions.log;
+package org.example.functions.trig;
 
-import org.example.functions.log.Cos;
 import org.example.interfaces.BaseTrigFunction;
 import org.example.validation.Validator;
 

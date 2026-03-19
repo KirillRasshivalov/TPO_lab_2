@@ -7,10 +7,10 @@ public interface BaseLogFunction {
     double etalon(double x, double osn);
 
     default double calculate(double x, double precision) {
-        return calculate(x, precision, 2.71);
+        return calculate(x, precision, Math.E);
     }
 
     default double etalon(double x) {
-        return etalon(x, 2.71);
+        return etalon(x, Math.E);
     }
 }

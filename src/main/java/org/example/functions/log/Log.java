@@ -1,4 +1,4 @@
-package org.example.functions.trig;
+package org.example.functions.log;
 
 import org.example.base_functions.Ln;
 import org.example.interfaces.BaseLogFunction;
@@ -11,7 +11,7 @@ public class Log implements BaseLogFunction {
     private Ln ln;
 
     public Log(Ln ln) {
-        this.ln = new Ln();
+        this.ln = ln;
     }
 
     @Override

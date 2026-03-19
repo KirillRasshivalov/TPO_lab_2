@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static junit.framework.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class LnTest {
@@ -60,7 +60,7 @@ public class LnTest {
     }
 
     @Test
-    @DisplayName("Тест ны неверный ввод данных.")
+    @DisplayName("Тест на неверный ввод данных.")
     void testIncorrectInput() {
         Throwable exception = assertThrows(IllegalArgumentException.class, () -> {lnCalculator.calculate(0, -1);});
         Throwable exception1 = assertThrows(IllegalArgumentException.class, () -> {lnCalculator.calculate(0, DELTA);});

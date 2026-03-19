@@ -1,12 +1,11 @@
 package org.example.system;
 
-import lombok.AllArgsConstructor;
 import org.example.base_functions.Ln;
 import org.example.base_functions.Sin;
-import org.example.functions.log.Cosec;
-import org.example.functions.trig.Log;
-import org.example.functions.log.Sec;
-import org.example.functions.log.Tan;
+import org.example.functions.trig.Cosec;
+import org.example.functions.log.Log;
+import org.example.functions.trig.Sec;
+import org.example.functions.trig.Tan;
 import org.example.interfaces.BaseSystem;
 
 public class SystemRealisation implements BaseSystem {
