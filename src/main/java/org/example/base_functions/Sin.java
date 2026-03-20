@@ -9,6 +9,7 @@ public class Sin implements BaseTrigFunction {
     @Override
     public double calculate(double x, double precision) {
         validator.validateTrig(x, precision);
+        x = x % (2 * Math.PI);
         double sumNew, sumOld, sum;
         int i = 1;
         sum = sumNew = x;
