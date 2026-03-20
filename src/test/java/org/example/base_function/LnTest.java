@@ -1,11 +1,15 @@
 package org.example.base_function;
 
 import org.example.base_functions.Ln;
+import org.example.util.CsvSaver;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -68,5 +72,10 @@ public class LnTest {
         assertThrows(IllegalArgumentException.class, () -> {lnCalculator.calculate(0, -100);});
         assertEquals("Значения погрешности должны быть в пределе (0, 1)", exception.getMessage());
         assertEquals("Аргумент должен быть положительным.", exception1.getMessage());
+    }
+
+    @AfterAll
+    static void fillLn() throws IOException {
+        CsvSaver.saveLogFunction(new Ln(), "Ln", -100, 100, 0.25, DELTA, 2.1, "lnValues");
     }
 }

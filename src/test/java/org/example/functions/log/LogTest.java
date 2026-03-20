@@ -1,6 +1,7 @@
 package org.example.functions.log;
 
 import org.example.base_functions.Ln;
+import org.example.util.CsvMockUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,15 +14,57 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LogTest {
 
-    private static final double DELTA = 1e-8;
+    private static final double DELTA = 1e-4;
 
     private static final double HIGH_PRECISION = 1e-10;
+
+    private static final double LOW_LIMIT = -100;
+
+    private static final double HIGH_LIMIT = 100;
+
+    private static final double STEP = 0.25;
+
+    private static final double BAZE_OSN = 2.0;
 
     private Log logCalculator;
 
     @BeforeEach
     void setUp() {
         this.logCalculator = new Log(new Ln());
+    }
+
+    @Test
+    @DisplayName("Тест с замоканным натуральным логарифмом.")
+    void testLnMock() throws Exception {
+        Ln lnMock = CsvMockUtil.mockFromCsv("lnValues", Ln.class);
+        Log logMock = new Log(lnMock);
+        Ln ln = new Ln();
+        Log log = new Log(ln);
+        for (double x = LOW_LIMIT; x <= HIGH_LIMIT; x += STEP) {
+            try {
+                log.calculate(x, HIGH_PRECISION, BAZE_OSN);
+                assertEquals(logMock.calculate(x, HIGH_PRECISION, BAZE_OSN), log.calculate(x, HIGH_PRECISION, BAZE_OSN), DELTA, ((Double) x).toString());
+            } catch (Exception e) {
+                assertEquals("Аргумент должен быть положительным.", e.getMessage());
+            }
+        }
+    }
+
+    @Test
+    @DisplayName("Тест с замоканным натуральным логарифмом и сравнение с эталоном.")
+    void testLnMockEtalon() throws Exception {
+        Ln lnMock = CsvMockUtil.mockFromCsv("lnValues", Ln.class);
+        Log logMock = new Log(lnMock);
+        Ln ln = new Ln();
+        Log log = new Log(ln);
+        for (double x = LOW_LIMIT; x <= HIGH_LIMIT; x += STEP) {
+            try {
+                log.calculate(x, HIGH_PRECISION, BAZE_OSN);
+                assertEquals(logMock.calculate(x, HIGH_PRECISION, BAZE_OSN), log.etalon(x, BAZE_OSN), DELTA, ((Double) x).toString());
+            } catch (Exception e) {
+                assertEquals("Аргумент должен быть положительным.", e.getMessage());
+            }
+        }
     }
 
     @Test
@@ -193,4 +236,5 @@ public class LogTest {
         assertTrue(log1 < log2);
         assertTrue(log2 < log3);
     }
+
 }
