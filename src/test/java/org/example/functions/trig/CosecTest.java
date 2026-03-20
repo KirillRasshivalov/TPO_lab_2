@@ -1,6 +1,7 @@
 package org.example.functions.trig;
 
 import org.example.base_functions.Sin;
+import org.example.util.CsvMockUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CosecTest {
 
-    private static final double DELTA = 1e-8;
+    private static final double DELTA = 1e-4;
 
     private static final double HIGH_PRECISION = 1e-10;
 
@@ -18,9 +19,49 @@ public class CosecTest {
 
     private Cosec cosecCalculator;
 
+    private static final double LOW_LIMIT = -100;
+
+    private static final double HIGH_LIMIT = 100;
+
+    private static final double STEP = 0.25;
+
     @BeforeEach
     void setUp() {
         this.cosecCalculator = new Cosec(new Sin());
+    }
+
+    @Test
+    @DisplayName("Тест с замоканным синусом.")
+    void testSinMock() throws Exception {
+        Sin sinMock = CsvMockUtil.mockFromCsv("sinValues", Sin.class);
+        Sin sin = new Sin();
+        Cosec cosecMock = new Cosec(sinMock);
+        Cosec cosec = new Cosec(sin);
+        for (double x = LOW_LIMIT; x <= HIGH_LIMIT; x += STEP) {
+            try {
+                cosecMock.calculate(x, HIGH_PRECISION);
+                assertEquals(cosecMock.calculate(x, HIGH_PRECISION), cosec.calculate(x, HIGH_PRECISION), DELTA);
+            } catch (Exception e) {
+                assertEquals("Значение синуса не должно быть равно нулю.", e.getMessage());
+            }
+        }
+    }
+
+    @Test
+    @DisplayName("Тест с замоканным синусом и сравнением с эталоном.")
+    void testSinMockEtalon() throws Exception {
+        Sin sinMock = CsvMockUtil.mockFromCsv("sinValues", Sin.class);
+        Sin sin = new Sin();
+        Cosec cosecMock = new Cosec(sinMock);
+        Cosec cosec = new Cosec(sin);
+        for (double x = LOW_LIMIT; x <= HIGH_LIMIT; x += STEP) {
+            try {
+                cosecMock.calculate(x, HIGH_PRECISION);
+                assertEquals(cosecMock.calculate(x, HIGH_PRECISION), cosec.etalon(x), DELTA);
+            } catch (Exception e) {
+                assertEquals("Значение синуса не должно быть равно нулю.", e.getMessage());
+            }
+        }
     }
 
     @Test

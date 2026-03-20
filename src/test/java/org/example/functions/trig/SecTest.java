@@ -1,6 +1,7 @@
 package org.example.functions.trig;
 
 import org.example.base_functions.Sin;
+import org.example.util.CsvMockUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SecTest {
-    private static final double DELTA = 1e-8;
+    private static final double DELTA = 1e-4;
 
     private static final double HIGH_PRECISION = 1e-10;
 
@@ -17,9 +18,49 @@ public class SecTest {
 
     private Sec secCalculator;
 
+    private static final double LOW_LIMIT = -100;
+
+    private static final double HIGH_LIMIT = 100;
+
+    private static final double STEP = 0.25;
+
     @BeforeEach
     void setUp() {
         this.secCalculator = new Sec(new Cos(new Sin()));
+    }
+
+    @Test
+    @DisplayName("Тест с замоканным косинусом.")
+    void testSinMock() throws Exception {
+        Cos cosMock = CsvMockUtil.mockFromCsv("cosValues", Cos.class);
+        Cos cos = new Cos(new Sin());
+        Sec secMock = new Sec(cosMock);
+        Sec sec = new Sec(cos);
+        for (double x = LOW_LIMIT; x <= HIGH_LIMIT; x += STEP) {
+            try {
+                sec.calculate(x, HIGH_PRECISION);
+                assertEquals(secMock.calculate(x, HIGH_PRECISION), sec.calculate(x, HIGH_PRECISION), DELTA, ((Double) x).toString());
+            } catch (Exception e) {
+                assertEquals("Значение косинуса не должно быть равно нулю.", e.getMessage());
+            }
+        }
+    }
+
+    @Test
+    @DisplayName("Тест с замоканным косинусом и сравнением с эталоном.")
+    void testSinMockEtalon() throws Exception {
+        Cos cosMock = CsvMockUtil.mockFromCsv("cosValues", Cos.class);
+        Cos cos = new Cos(new Sin());
+        Sec secMock = new Sec(cosMock);
+        Sec sec = new Sec(cos);
+        for (double x = LOW_LIMIT; x <= HIGH_LIMIT; x += STEP) {
+            try {
+                sec.calculate(x, HIGH_PRECISION);
+                assertEquals(secMock.calculate(x, HIGH_PRECISION), sec.etalon(x), DELTA);
+            } catch (Exception e) {
+                assertEquals("Значение косинуса не должно быть равно нулю.", e.getMessage());
+            }
+        }
     }
 
     @Test

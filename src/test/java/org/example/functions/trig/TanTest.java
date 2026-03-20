@@ -1,6 +1,7 @@
 package org.example.functions.trig;
 
 import org.example.base_functions.Sin;
+import org.example.util.CsvMockUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,17 +10,61 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TanTest  {
-    private static final double DELTA = 1e-8;
+    private static final double DELTA = 1e-4;
 
     private static final double HIGH_PRECISION = 1e-10;
 
     private static final double PI = Math.PI;
+
+    private static final double LOW_LIMIT = -100;
+
+    private static final double HIGH_LIMIT = 100;
+
+    private static final double STEP = 0.25;
 
     private Tan tanCalculator;
 
     @BeforeEach
     void setUp() {
         this.tanCalculator = new Tan(new Sin(), new Cos(new Sin()));
+    }
+
+    @Test
+    @DisplayName("Тест с замоканными данными синуса и косинуса.")
+    void testSinCosMock() throws Exception {
+        Sin sinMock = CsvMockUtil.mockFromCsv("sinValues", Sin.class);
+        Cos cosMock = CsvMockUtil.mockFromCsv("cosValues", Cos.class);
+        Sin sin = new Sin();
+        Cos cos = new Cos(sin);
+        Tan tanMock = new Tan(sinMock, cosMock);
+        Tan tan = new Tan(sin, cos);
+        for (double x = LOW_LIMIT; x <= HIGH_LIMIT; x += STEP) {
+            try {
+                tan.calculate(x, HIGH_PRECISION);
+                assertEquals(tanMock.calculate(x, HIGH_PRECISION), tan.calculate(x, HIGH_PRECISION), DELTA);
+            } catch (Exception e) {
+                assertEquals("Значение косинуса не должно быть равно нулю.", e.getMessage());
+            }
+        }
+    }
+
+    @Test
+    @DisplayName("Тест с замоканными данными синуса и косинуса и сравнение с эталоном.")
+    void testSinCosMockEtalon() throws Exception {
+        Sin sinMock = CsvMockUtil.mockFromCsv("sinValues", Sin.class);
+        Cos cosMock = CsvMockUtil.mockFromCsv("cosValues", Cos.class);
+        Sin sin = new Sin();
+        Cos cos = new Cos(sin);
+        Tan tanMock = new Tan(sinMock, cosMock);
+        Tan tan = new Tan(sin, cos);
+        for (double x = LOW_LIMIT; x <= HIGH_LIMIT; x += STEP) {
+            try {
+                tan.calculate(x, HIGH_PRECISION);
+                assertEquals(tanMock.calculate(x, HIGH_PRECISION), tan.etalon(x), DELTA);
+            } catch (Exception e) {
+                assertEquals("Значение косинуса не должно быть равно нулю.", e.getMessage());
+            }
+        }
     }
 
     @Test

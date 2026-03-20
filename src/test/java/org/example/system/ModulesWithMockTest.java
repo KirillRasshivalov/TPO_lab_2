@@ -1,4 +1,4 @@
-package org.example.util;
+package org.example.system;
 
 import org.example.base_functions.Ln;
 import org.example.base_functions.Sin;
@@ -6,7 +6,7 @@ import org.example.functions.trig.Cosec;
 import org.example.functions.trig.Sec;
 import org.example.functions.trig.Tan;
 import org.example.functions.log.Log;
-import org.example.system.SystemRealisation;
+import org.example.util.CsvSaver;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;

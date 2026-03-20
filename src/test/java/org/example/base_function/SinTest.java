@@ -1,9 +1,13 @@
 package org.example.base_function;
 
 import org.example.base_functions.Sin;
+import org.example.util.CsvSaver;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -76,5 +80,11 @@ public class SinTest {
         assertEquals(sinCalculator.etalon(15), sinCalculator.calculate(15, DELTA), DELTA);
         assertEquals(sinCalculator.etalon(-11), sinCalculator.calculate(-11, DELTA), DELTA);
     }
+
+//    @AfterAll
+//    static void fillCSV() throws IOException {
+//        Sin sin = new Sin();
+//        CsvSaver.saveTrigFunction(sin, "sin", -100,100, 0.25, DELTA, "sinValues");
+//    }
 
 }
